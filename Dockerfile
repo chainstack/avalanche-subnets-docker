@@ -1,5 +1,5 @@
 ARG AVALANCHE_REPO="https://github.com/ava-labs/avalanchego.git"
-ARG AVALANCHE_RELEASE="v1.9.0-fuji"
+ARG AVALANCHE_RELEASE="v1.9.0-fuji-post-upgrade"
 
 ARG AVALANCHE_SUBNETS_REPO="https://github.com/ava-labs/subnet-evm"
 ARG AVALANCHE_SUBNETS_RELEASE="v0.3.0"
