@@ -1,0 +1,41 @@
+version: 2.1
+aliases:
+  - &builder docker:20.10.21-git
+
+jobs:
+  build-avax-image:
+    working_directory: /.
+    docker:
+      - image: *builder
+    steps:
+      - checkout
+      - setup_remote_docker
+      - run:
+          name: Build AVAX Subnet Image
+          command: |
+            docker build -t avalanche-subnet . \
+              --build-arg DFK_BLOCKCHAIN_ID=${DFK_BLOCKCHAIN_ID} \
+              --build-arg DFK_ETH_CHAIN_ID=${DFK_ETH_CHAIN_ID} \
+              --build-arg DFK_VM_ID=${DFK_VM_ID} \
+              --build-arg SWIMMER_BLOCKCHAIN_ID=${SWIMMER_BLOCKCHAIN_ID} \
+              --build-arg SWIMMER_ETH_CHAIN_ID=${SWIMMER_ETH_CHAIN_ID} \
+              --build-arg SWIMMER_VM_ID=${SWIMMER_VM_ID}
+      - deploy:
+          name: Push AVAX Subnet Image
+          command: |
+            docker login -u ${DOCKER_HUB_USER} -p ${DOCKER_HUB_TOKEN}
+            docker tag avalanche-subnet "chainstack/avalanche-subnet-${BLOCKCHAIN_NETWORK}:${CIRCLE_SHA1}"
+            docker push "chainstack/avalanche-subnet-${BLOCKCHAIN_NETWORK}:${CIRCLE_SHA1}"
+workflows:
+  build-avax-mainnet:
+    jobs:
+      - build-avax-image:
+          context: 
+            - "prod.chainstack | Docker Hub"
+            - "prod.chainstack | AVAX Subnet Mainnet"
+  build-avax-testnet:
+    jobs:
+      - build-avax-image:
+          context: 
+            - "prod.chainstack | Docker Hub"
+            - "prod.chainstack | AVAX Subnet Testnet"
