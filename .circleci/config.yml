@@ -33,9 +33,18 @@ workflows:
           context: 
             - "prod.chainstack | Docker Hub"
             - "prod.chainstack | AVAX Subnet Mainnet"
+          filters:
+            branches:
+              only:
+                - master
   build-avax-testnet:
     jobs:
       - build-avax-image:
           context: 
             - "prod.chainstack | Docker Hub"
             - "prod.chainstack | AVAX Subnet Testnet"
+          filters:
+            branches:
+              only:
+                - master
+            
