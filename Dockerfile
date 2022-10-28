@@ -4,13 +4,13 @@ ARG AVALANCHE_RELEASE="v1.9.0"
 ARG AVALANCHE_SUBNETS_REPO="https://github.com/ava-labs/subnet-evm"
 ARG AVALANCHE_SUBNETS_RELEASE="v0.4.0"
 
-ARG DFK_ETH_CHAIN_ID="53935"
+ARG DFK_ETH_CHAIN_ID="335"
 ARG DFK_VM_ID="mDV3QWRXfwgKUWb9sggkv4vQxAQR4y2CyKrt5pLZ5SzQ7EHBv"
-ARG DFK_BLOCKCHAIN_ID="q2aTwKuyzgs8pynF7UXBZCU7DejbZbZ6EUyHr3JQzYgwNPUPi"
+ARG DFK_BLOCKCHAIN_ID="2pDrf9iZaP8eBGmhut8NhERLMw9QyFjoebiiPMgwbwbxagaP6Z"
 
-ARG SWIMMER_ETH_CHAIN_ID="73772"
+ARG SWIMMER_ETH_CHAIN_ID="73773"
 ARG SWIMMER_VM_ID="srSGD5JeYhL8GLx4RUw53VN5TcoBbax6EeCYmy5S3DiteJhdF"
-ARG SWIMMER_BLOCKCHAIN_ID="2K33xS9AyP9oCDiHYKVrHe7F54h2La5D8erpTChaAhdzeSu2RX"
+ARG SWIMMER_BLOCKCHAIN_ID="qVd94hjZUfN5h5ZPxozos1wHjaszipeGJoYYxxMJ3dqZYFjZ3"
 
 FROM golang:1.18.5-buster AS builder
 
@@ -56,7 +56,7 @@ WORKDIR /avalanchego/build
 COPY --from=builder /avalanchego/build/ .
 
 # Copy upgrade.json
-COPY --from=builder /subnet-evm/networks/mainnet/${DFK_ETH_CHAIN_ID}/upgrade.json /home/${DFK_BLOCKCHAIN_ID}/upgrade.json
-COPY --from=builder /subnet-evm/networks/mainnet/${SWIMMER_ETH_CHAIN_ID}/upgrade.json /home/${SWIMMER_BLOCKCHAIN_ID}/upgrade.json
+COPY --from=builder /subnet-evm/networks/testnet/${DFK_ETH_CHAIN_ID}/upgrade.json /home/${DFK_BLOCKCHAIN_ID}/upgrade.json
+COPY --from=builder /subnet-evm/networks/testnet/${SWIMMER_ETH_CHAIN_ID}/upgrade.json /home/${SWIMMER_BLOCKCHAIN_ID}/upgrade.json
 
 ENTRYPOINT ["./avalanchego"]
