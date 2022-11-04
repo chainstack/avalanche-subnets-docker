@@ -4,6 +4,9 @@ ARG AVALANCHE_RELEASE="v1.9.1"
 ARG AVALANCHE_SUBNETS_REPO="https://github.com/ava-labs/subnet-evm"
 ARG AVALANCHE_SUBNETS_RELEASE="v0.4.2"
 
+ARG AVALANCHE_SUBNETS_NETWORKS_REPO="https://github.com/ava-labs/public-chain-assets"
+ARG AVALANCHE_SUBNETS_NETWORKS_RELEASE="main"
+
 ARG DFK_ETH_CHAIN_ID="53935"
 ARG DFK_VM_ID="mDV3QWRXfwgKUWb9sggkv4vQxAQR4y2CyKrt5pLZ5SzQ7EHBv"
 ARG DFK_BLOCKCHAIN_ID="q2aTwKuyzgs8pynF7UXBZCU7DejbZbZ6EUyHr3JQzYgwNPUPi"
@@ -19,6 +22,9 @@ ARG AVALANCHE_RELEASE
 
 ARG AVALANCHE_SUBNETS_REPO
 ARG AVALANCHE_SUBNETS_RELEASE
+
+ARG AVALANCHE_SUBNETS_NETWORKS_REPO
+ARG AVALANCHE_SUBNETS_NETWORKS_RELEASE
 
 ARG DFK_VM_ID
 ARG SWIMMER_VM_ID
@@ -43,6 +49,8 @@ RUN git clone --depth 1 -b ${AVALANCHE_SUBNETS_RELEASE} ${AVALANCHE_SUBNETS_REPO
 RUN ./scripts/build.sh /avalanchego/build/plugins/${DFK_VM_ID}
 RUN ./scripts/build.sh /avalanchego/build/plugins/${SWIMMER_VM_ID}
 
+RUN git clone --depth 1 -b ${AVALANCHE_SUBNETS_NETWORKS_RELEASE} ${AVALANCHE_SUBNETS_NETWORKS_REPO}
+
 FROM debian:buster-slim as execution
 
 ARG DFK_ETH_CHAIN_ID
@@ -56,7 +64,7 @@ WORKDIR /avalanchego/build
 COPY --from=builder /avalanchego/build/ .
 
 # Copy upgrade.json
-COPY --from=builder /subnet-evm/networks/mainnet/${DFK_ETH_CHAIN_ID}/upgrade.json /home/${DFK_BLOCKCHAIN_ID}/upgrade.json
-COPY --from=builder /subnet-evm/networks/mainnet/${SWIMMER_ETH_CHAIN_ID}/upgrade.json /home/${SWIMMER_BLOCKCHAIN_ID}/upgrade.json
+COPY --from=builder /subnet-evm/public-chain-assets/chains/${DFK_ETH_CHAIN_ID}/upgrade.json /home/${DFK_BLOCKCHAIN_ID}/upgrade.json
+COPY --from=builder /subnet-evm/public-chain-assets/chains/${SWIMMER_ETH_CHAIN_ID}/upgrade.json /home/${SWIMMER_BLOCKCHAIN_ID}/upgrade.json
 
 ENTRYPOINT ["./avalanchego"]
