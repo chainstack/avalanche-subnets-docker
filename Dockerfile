@@ -68,3 +68,5 @@ COPY --from=builder /subnet-evm/public-chain-assets/chains/${DFK_ETH_CHAIN_ID}/u
 COPY --from=builder /subnet-evm/public-chain-assets/chains/${SWIMMER_ETH_CHAIN_ID}/upgrade.json /home/${SWIMMER_BLOCKCHAIN_ID}/upgrade.json
 
 ENTRYPOINT ["./avalanchego"]
+
+# test
