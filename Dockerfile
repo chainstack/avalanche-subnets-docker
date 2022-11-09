@@ -2,7 +2,7 @@ ARG AVALANCHE_REPO="https://github.com/ava-labs/avalanchego.git"
 ARG AVALANCHE_RELEASE="v1.9.2"
 
 ARG AVALANCHE_SUBNETS_REPO="https://github.com/ava-labs/subnet-evm"
-ARG AVALANCHE_SUBNETS_RELEASE="v0.4.2"
+ARG AVALANCHE_SUBNETS_RELEASE="v0.4.3"
 
 ARG AVALANCHE_SUBNETS_NETWORKS_REPO="https://github.com/ava-labs/public-chain-assets"
 ARG AVALANCHE_SUBNETS_NETWORKS_RELEASE="main"
