@@ -3,12 +3,9 @@ ARG AVALANCHE_RELEASE="v1.9.7"
 
 ARG AVALANCHE_SUBNETS_REPO="https://github.com/ava-labs/subnet-evm"
 ARG AVALANCHE_SUBNETS_RELEASE="v0.4.8"
-<<<<<<< HEAD
 
 ARG AVALANCHE_SUBNETS_NETWORKS_REPO="https://github.com/ava-labs/public-chain-assets"
 ARG AVALANCHE_SUBNETS_NETWORKS_RELEASE="main"
-=======
->>>>>>> 7f63aa8 (v1.9.7)
 
 ARG DFK_ETH_CHAIN_ID="53935"
 ARG DFK_VM_ID="mDV3QWRXfwgKUWb9sggkv4vQxAQR4y2CyKrt5pLZ5SzQ7EHBv"
