@@ -7,9 +7,12 @@ ARG AVALANCHE_SUBNETS_RELEASE="v0.4.12"
 ARG AVALANCHE_SUBNETS_NETWORKS_REPO="https://github.com/ava-labs/public-chain-assets"
 ARG AVALANCHE_SUBNETS_NETWORKS_RELEASE="main"
 
-ARG DFK_ETH_CHAIN_ID="335"
+ARG DFK_ETH_CHAIN_ID="53935"
+ARG DFK_FUJI_ETH_CHAIN_ID="335"
 ARG DFK_VM_ID="mDV3QWRXfwgKUWb9sggkv4vQxAQR4y2CyKrt5pLZ5SzQ7EHBv"
-ARG DFK_BLOCKCHAIN_ID="32sexHqc3tBQsik8h7WP5F2ruL5svqhX5opeTgXCRVX8HpbKF"
+ARG DFK_BLOCKCHAIN_ID="q2aTwKuyzgs8pynF7UXBZCU7DejbZbZ6EUyHr3JQzYgwNPUPi"
+ARG DFK_FUJI_BLOCKCHAIN_ID="32sexHqc3tBQsik8h7WP5F2ruL5svqhX5opeTgXCRVX8HpbKF"
+
 
 ARG SWIMMER_ETH_CHAIN_ID="73772"
 ARG SWIMMER_VM_ID="srSGD5JeYhL8GLx4RUw53VN5TcoBbax6EeCYmy5S3DiteJhdF"
@@ -69,6 +72,7 @@ COPY --from=builder /avalanchego/build/ .
 
 # Copy upgrade.json
 COPY --from=builder /subnet-evm/public-chain-assets/chains/${DFK_ETH_CHAIN_ID}/upgrade.json /home/${DFK_BLOCKCHAIN_ID}/upgrade.json
+COPY --from=builder /subnet-evm/public-chain-assets/chains/${DFK_FUJI_ETH_CHAIN_ID}/upgrade.json /home/${DFK_FUJI_BLOCKCHAIN_ID}/upgrade.json
 COPY --from=builder /subnet-evm/public-chain-assets/chains/${SWIMMER_ETH_CHAIN_ID}/upgrade.json /home/${SWIMMER_BLOCKCHAIN_ID}/upgrade.json
 
 ENTRYPOINT ["./avalanchego"]
