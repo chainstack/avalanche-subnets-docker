@@ -73,4 +73,4 @@ COPY --from=builder /subnet-evm/public-chain-assets/chains/${SWIMMER_ETH_CHAIN_I
 
 ENTRYPOINT ["./avalanchego"]
 
-# test commit
+# test
