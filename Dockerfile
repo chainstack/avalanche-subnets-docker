@@ -56,7 +56,7 @@ RUN git clone --depth 1 -b ${AVALANCHE_SUBNETS_RELEASE} ${AVALANCHE_SUBNETS_REPO
 
 RUN ./scripts/build.sh /avalanchego/build/plugins/${DFK_VM_ID}
 RUN ./scripts/build.sh /avalanchego/build/plugins/${SWIMMER_VM_ID}
-RUN ./scripts/build.sh /avalanchego/build/plugins/${PLAYA3ULL_PLAYA3ULL_VM_ID}
+RUN ./scripts/build.sh /avalanchego/build/plugins/${PLAYA3ULL_VM_ID}
 
 RUN cp /avalanchego/build/plugins/${SWIMMER_VM_ID} /avalanchego/build/plugins/${SHRAPNEL_VM_ID}
 RUN cp /avalanchego/build/plugins/${PLAYA3ULL_VM_ID} /avalanchego/build/plugins/${PLAYA3ULL_VM_ID}
