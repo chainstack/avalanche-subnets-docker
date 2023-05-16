@@ -15,7 +15,12 @@ ARG SWIMMER_ETH_CHAIN_ID="73772"
 ARG SWIMMER_VM_ID="srSGD5JeYhL8GLx4RUw53VN5TcoBbax6EeCYmy5S3DiteJhdF"
 ARG SWIMMER_BLOCKCHAIN_ID="2K33xS9AyP9oCDiHYKVrHe7F54h2La5D8erpTChaAhdzeSu2RX"
 
+
 ARG SHRAPNEL_VM_ID="djYdNZduHG7mTQi93VXohUaEhirZYF36y3WbBoySe1JUyjaRo"
+
+ARG PLAYA3ULL_BLOCKCHAIN_ID="k2SFEZ2MZr9UGXiycnA1DdaLqZTKDaHK7WUXVLhJk5F9DD8r1"
+ARG PLAYA3ULL_VM_ID="cN6t22ptqzNhvvB66z25f2eZXK92PR62fxoVYRzDw1hWsMZt2"
+ARG PLAYA3ULL_SUBNET_ID="2wLe8Ma7YcUmxMJ57JVWETMSHz1mjXmJc5gmssvKm3Pw8GkcFq"
 
 FROM golang:1.19.6-buster AS builder
 
@@ -51,7 +56,11 @@ RUN git clone --depth 1 -b ${AVALANCHE_SUBNETS_RELEASE} ${AVALANCHE_SUBNETS_REPO
 
 RUN ./scripts/build.sh /avalanchego/build/plugins/${DFK_VM_ID}
 RUN ./scripts/build.sh /avalanchego/build/plugins/${SWIMMER_VM_ID}
+RUN ./scripts/build.sh /avalanchego/build/plugins/${PLAYA3ULL_BLOCKCHAIN_ID}
+RUN ./scripts/build.sh /avalanchego/build/plugins/${PLAYA3ULL_SUBNET_ID}
+
 RUN cp /avalanchego/build/plugins/${SWIMMER_VM_ID} /avalanchego/build/plugins/${SHRAPNEL_VM_ID}
+RUN cp /avalanchego/build/plugins/${PLAYA3ULL_VM_ID} /avalanchego/build/plugins/${PLAYA3ULL_VM_ID}
 
 RUN git clone --depth 1 -b ${AVALANCHE_SUBNETS_NETWORKS_RELEASE} ${AVALANCHE_SUBNETS_NETWORKS_REPO}
 
