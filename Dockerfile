@@ -17,7 +17,7 @@ ARG SWIMMER_BLOCKCHAIN_ID="2K33xS9AyP9oCDiHYKVrHe7F54h2La5D8erpTChaAhdzeSu2RX"
 
 ARG SHRAPNEL_VM_ID="djYdNZduHG7mTQi93VXohUaEhirZYF36y3WbBoySe1JUyjaRo"
 
-FROM golang:1.19.12 AS builder
+FROM golang:1.20.8 AS builder
 
 ARG AVALANCHE_REPO
 ARG AVALANCHE_RELEASE
@@ -33,7 +33,7 @@ ARG SWIMMER_VM_ID
 ARG SHRAPNEL_VM_ID
 
 RUN apt-get update && \
-    apt-get install -y --no-install-recommends git bash=5.0-4 git=1:2.20.1-2+deb10u3 make=4.2.1-1.2 gcc=4:8.3.0-1 musl-dev=1.1.21-2 ca-certificates=20200601~deb10u2 linux-headers-amd64
+    apt-get install -y --no-install-recommends musl-dev=1.2.3-1
 
 # Build Avalanche
 WORKDIR /avalanchego
