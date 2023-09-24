@@ -43,7 +43,7 @@ RUN git clone --depth 1 -b ${AVALANCHE_SUBNETS_RELEASE} ${AVALANCHE_SUBNETS_REPO
 RUN ./scripts/build.sh /avalanchego/build/plugins/${PLAYA3ULL_VM_ID}
 RUN git clone --depth 1 -b ${AVALANCHE_SUBNETS_NETWORKS_RELEASE} ${AVALANCHE_SUBNETS_NETWORKS_REPO}
 
-FROM debian:buster-slim as execution
+FROM debian:bookworm-slim as execution
 
 ARG PLAYA3ULL_BLOCKCHAIN_ID
 ARG PLAYA3ULL_SUBNET_ID
