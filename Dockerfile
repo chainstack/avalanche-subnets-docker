@@ -55,7 +55,7 @@ RUN cp /avalanchego/build/plugins/${SWIMMER_VM_ID} /avalanchego/build/plugins/${
 
 RUN git clone --depth 1 -b ${AVALANCHE_SUBNETS_NETWORKS_RELEASE} ${AVALANCHE_SUBNETS_NETWORKS_REPO}
 
-FROM debian:buster-slim as execution
+FROM debian:bookworm-slim as execution
 
 ARG DFK_ETH_CHAIN_ID
 ARG DFK_BLOCKCHAIN_ID
