@@ -1,8 +1,8 @@
 ARG AVALANCHE_REPO="https://github.com/ava-labs/avalanchego.git"
-ARG AVALANCHE_RELEASE="v1.10.13"
+ARG AVALANCHE_RELEASE="v1.10.17"
 
 ARG AVALANCHE_SUBNETS_REPO="https://github.com/hubble-exchange/hubblenet"
-ARG AVALANCHE_SUBNETS_RELEASE="v0.8.3"
+ARG AVALANCHE_SUBNETS_RELEASE="v0.8.4"
 
 ARG AVALANCHE_SUBNETS_NETWORKS_REPO="https://github.com/ava-labs/public-chain-assets"
 ARG AVALANCHE_SUBNETS_NETWORKS_RELEASE="main"
